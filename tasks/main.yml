@@ -35,6 +35,7 @@
   file:
     path: /usr/lib/systemd/system
     state: directory
+  when: ansible_env.ANSIBLE_CONTAINER is not defined
 
 - name: ensure unit file is present & up to date
   template:
@@ -43,6 +44,7 @@
   notify:
     - reload unit
     - restart docker
+  when: ansible_env.ANSIBLE_CONTAINER is not defined
 
 - meta: flush_handlers
 
@@ -50,6 +52,7 @@
   service:
     name: docker
     enabled: yes
+  when: ansible_env.ANSIBLE_CONTAINER is not defined
 
 - name: ensure vagrant user can run docker commands
   user:

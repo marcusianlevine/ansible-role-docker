@@ -3,6 +3,11 @@
   apt:
     name: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
     - apt-transport-https
     - ca-certificates
+
+- name: Clean apt cache
+  command: apt-get clean
+  when: ansible_env.ANSIBLE_CONTAINER is defined

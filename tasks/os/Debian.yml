@@ -7,6 +7,7 @@
   with_items:
     - apt-transport-https
     - ca-certificates
+    - python3
 
 - name: Clean apt cache
   command: apt-get clean
